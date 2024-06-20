@@ -631,15 +631,12 @@ def enviarDespacho(request):
         else:
             
             # Credenciales de Twilio
-            auth_token = 'ef796500be917e2129ae12fafab9ab46'
-            account_sid = 'AC34c7c220577f11411ccd59c969e3a539'
-            client = Client(account_sid, auth_token)
+            # auth_token = 'ef796500be917e2129ae12fafab9ab46'
+            # account_sid = 'AC34c7c220577f11411ccd59c969e3a539'
+            
+            # client = Client(account_sid, auth_token)
 
-            message = client.messages.create(
-                from_='whatsapp:+14155238886',
-                body= request.POST['mensaje'],
-                to='whatsapp:+56973688125'
-            )
+            # message = client.messages.create(from_='whatsapp:+14155238886',body= request.POST['mensaje'],to='whatsapp:+56973688125')
             
             return redirect('calendarioPedidos')
         
