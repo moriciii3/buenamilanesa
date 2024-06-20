@@ -61,11 +61,8 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{% url 'enviarDespacho' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="mensaje" value="{{string_mensaje_whatsapp}}">
-                            <input type="submit" value="Despacho">
-                        </form>
+                        <div id="message">{{string_mensaje_whatsapp}}</div>
+                        <button onclick="copyToClipboard()">Copiar despacho</button>
                     </td>
                     <td>
                         <form action="{% url 'eliminarPedido' %}" method="POST" onsubmit="return confirmarEliminacion()">

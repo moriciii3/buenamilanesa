@@ -45,5 +45,17 @@
             return confirmacion;
         }
     </script>  
+    <script>
+        function copyToClipboard() {
+            var textToCopy = document.getElementById("message").textContent;
+            navigator.clipboard.writeText(textToCopy)
+                .then(function() {
+                    alert('Mensaje copiado al portapapeles');
+                })
+                .catch(function(err) {
+                    console.error('Error al copiar: ', err);
+                });
+        }
+    </script>
 </body>
 </html>
