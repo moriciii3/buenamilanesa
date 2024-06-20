@@ -631,18 +631,18 @@ def enviarDespacho(request):
             return redirect('home')
         else:
 
-            TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
-            TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+            # TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+            # TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
 
-            account_sid = TWILIO_ACCOUNT_SID
-            auth_token = TWILIO_AUTH_TOKEN
-            client = Client(account_sid, auth_token)
+            # account_sid = TWILIO_ACCOUNT_SID
+            # auth_token = TWILIO_AUTH_TOKEN
+            # client = Client(account_sid, auth_token)
 
-            message = client.messages.create(
-                from_='whatsapp:+14155238886',
-                body= request.POST['mensaje'],
-                to='whatsapp:+56973688125'
-            )
+            # message = client.messages.create(
+            #     from_='whatsapp:+14155238886',
+            #     body= request.POST['mensaje'],
+            #     to='whatsapp:+56973688125'
+            # )
 
             return redirect('calendarioPedidos')
         
