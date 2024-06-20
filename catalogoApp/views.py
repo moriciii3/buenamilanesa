@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Users, Clientes, Productos, Pedidos, Imagenes
-# from twilio.rest import Client
+from twilio.rest import Client
 import os
 
 # Create your views here.
@@ -622,6 +622,33 @@ def pedidoPagado(request):
             except Exception as e:
                 return HttpResponse(f'Error al modificar pedido: {str(e)}')
             
+def enviarDespacho(request):
+    if 'userName' not in request.session:
+        return redirect('login')
+    else:
+
+        if request.method == 'GET': # LO HAGO DE CAGON, SIEMPRE DEBERIA ENTRAR POR POST
+            return redirect('home')
+        else:
+            try:
+                TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+                TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+
+                account_sid = TWILIO_ACCOUNT_SID
+                auth_token = TWILIO_AUTH_TOKEN
+                client = Client(account_sid, auth_token)
+                
+                message = client.messages.create(
+                    from_='whatsapp:+14155238886',
+                    body= request.POST['mensaje'],
+                    to='whatsapp:+56987095987'
+                )
+                print("Mensaje enviado correctamente SID:", message.sid)
+            except Exception as e:
+                print("Hubo un error al enviar el mensaje:", str(e))
+
+            return redirect('calendarioPedidos')
+        
 # Apartado de catalogo
         
 def catalogo(request):

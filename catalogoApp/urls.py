@@ -22,7 +22,7 @@ urlpatterns = [
     path('panel/eliminar-pedido', views.eliminarPedido, name="eliminarPedido"),
     path('panel/pedido-entregado', views.pedidoEntregado, name="pedidoEntregado"),
     path('panel/pedido-pagado', views.pedidoPagado, name="pedidoPagado"),
-    # path('panel/enviar-despacho', views.enviarDespacho, name="enviarDespacho"),
+    path('panel/enviar-despacho', views.enviarDespacho, name="enviarDespacho"),
     # Catalogo
     path('panel/gestion-catalogo', views.gestionCatalogo, name="gestionCatalogo"),
     path('panel/modificar-imagen', views.modificarImagen, name="modificarImagen"),
