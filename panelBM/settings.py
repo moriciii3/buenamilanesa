@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'panelBM.wsgi.application'
 DATABASES = {
     # 'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': BASE_DIR / 'db.sqlite3'}
     'default': dj_database_url.config(
-        default='postgres://db_buena_milanesa_user:1qcWXlUa1b3MFy3WsjMMHepLVs4ArKvS@dpg-cpq7ud9u0jms738r38sg-a/db_buena_milanesa',
+        default='postgres://db_buena_milanesa_user:1qcWXlUa1b3MFy3WsjMMHepLVs4ArKvS@dpg-cpq7ud9u0jms738r38sg-a.oregon-postgres.render.com/db_buena_milanesa',
     )
 }
 
