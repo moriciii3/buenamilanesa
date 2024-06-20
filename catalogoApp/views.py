@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Users, Clientes, Productos, Pedidos, Imagenes
 from twilio.rest import Client
+import os
 
 # Create your views here.
 
@@ -629,7 +630,20 @@ def enviarDespacho(request):
         if request.method == 'GET': # LO HAGO DE CAGON, SIEMPRE DEBERIA ENTRAR POR POST
             return redirect('home')
         else:
-            
+
+            TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+            TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+
+            account_sid = TWILIO_ACCOUNT_SID
+            auth_token = TWILIO_AUTH_TOKEN
+            client = Client(account_sid, auth_token)
+
+            message = client.messages.create(
+                from_='whatsapp:+14155238886',
+                body= request.POST['mensaje'],
+                to='whatsapp:+56973688125'
+            )
+
             return redirect('calendarioPedidos')
         
 # Apartado de catalogo
