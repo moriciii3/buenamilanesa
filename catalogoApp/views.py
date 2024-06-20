@@ -630,19 +630,22 @@ def enviarDespacho(request):
         if request.method == 'GET': # LO HAGO DE CAGON, SIEMPRE DEBERIA ENTRAR POR POST
             return redirect('home')
         else:
+            try:
+                TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+                TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
 
-            TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
-            TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
-
-            account_sid = TWILIO_ACCOUNT_SID
-            auth_token = TWILIO_AUTH_TOKEN
-            client = Client(account_sid, auth_token)
-
-            message = client.messages.create(
-                from_='whatsapp:+14155238886',
-                body= request.POST['mensaje'],
-                to='whatsapp:+56987095987'
-            )
+                account_sid = TWILIO_ACCOUNT_SID
+                auth_token = TWILIO_AUTH_TOKEN
+                client = Client(account_sid, auth_token)
+                
+                message = client.messages.create(
+                    from_='whatsapp:+14155238886',
+                    body= request.POST['mensaje'],
+                    to='whatsapp:+56987095987'
+                )
+                print("Mensaje enviado correctamente SID:", message.sid)
+            except Exception as e:
+                print("Hubo un error al enviar el mensaje:", str(e))
 
             return redirect('calendarioPedidos')
         
